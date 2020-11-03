@@ -146,7 +146,7 @@ var controller = (function(Dom, storage){
     
     Array.from(Dom.hereEl.imgs).forEach(function(img){
         img.addEventListener("click", function(){
-            let url = "http://127.0.0.1:5500/products.json";
+            let url = "https://github.com/dooyongnsaako/lilskiggy/blob/master/products.json";
                 ouRequest = new XMLHttpRequest(),
                 targetID = this.id;
 
