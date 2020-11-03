@@ -82,6 +82,14 @@ var DomElements = (function(){
         itemm:document.querySelector(".item"),
         totalNumItems:document.querySelectorAll(".itemDetails"),
 
+        sales: [
+            {"item":"albumcovertshirt","img":"assests/albumcovertshirt.jpg","name":"Album Covered Tshirt", "price":"$23.08", "details":""},
+            {"item":"lilskiggytee","img":"assests/lilskiggytee.jpg","name":"Mans Day out Tshirt", "price":"$21.10","details":""},
+            {"item":"lightblue","img":"assests/lightblue.jpg","name":"Light blue girl tee", "price":"$12.40","details":""},
+            {"item":"albuminwhite","img":"assests/albuminwhite.png","name":"Album covered in white tshirt", "price":"$18.34","details":""},
+            {"item":"nocluetshirt","img":"assests/nocluetshirt.png","name":"No clue jersey", "price":"$18.34","details":""}
+        ]
+
     };
     return {
         hereEl: eachElement,
@@ -146,29 +154,17 @@ var controller = (function(Dom, storage){
     
     Array.from(Dom.hereEl.imgs).forEach(function(img){
         img.addEventListener("click", function(){
-            let url = "https://github.com/dooyongnsaako/lilskiggy/blob/master/products.json";
-                ouRequest = new XMLHttpRequest(),
-                targetID = this.id;
+            let targetID = this.id;
 
-            ouRequest.open("GET", url, true);
-
-            ouRequest.onreadystatechange = function(){
-                if(ouRequest.status == 200 && ouRequest.readyState == 4){
-                    var data = JSON.parse(this.responseText);
-
-                    for(var i = 0; i<data[0].product_Array.length; i++) {
-                        if(targetID === data[0].product_Array[i].item){
-                            Dom.hereEl.picture.src = data[0].product_Array[i].img;
-                            Dom.hereEl.itemName.textContent = data[0].product_Array[i].name;
-                            Dom.hereEl.prices.textContent = data[0].product_Array[i].price;
-                
-                        }
-                    }
-                    
+            for(var i = 0; i< Dom.hereEl.sales.length; i++) {
+                if(targetID === Dom.hereEl.sales[i].item){
+                    Dom.hereEl.picture.src = Dom.hereEl.sales[i].img;
+                    Dom.hereEl.itemName.textContent = Dom.hereEl.sales[i].name;
+                    Dom.hereEl.prices.textContent = Dom.hereEl.sales[i].price;
+        
                 }
             }
-     
-           ouRequest.send(null);
+           
             
             Dom.hereEl.wrapper.classList.add("opacity");
             Dom.hereEl.detail.classList.add("itemShow");
